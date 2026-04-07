@@ -11,7 +11,28 @@ struct thread_array {
     int first;
     int real_size;
 };
+int cmp(const void *a, const void *b) {
+    return *(int*)a - *(int*)b;
+}
 
+void* sort(void* thr_arr) {
+    struct thread_array* local_thr_arr = thr_arr;
+    int* local_arr = local_thr_arr->array;
+    int length = local_thr_arr->length;
+    int first = local_thr_arr->first;
+    if (first >= local_thr_arr->real_size) {
+        return NULL;
+    }
+    if (first+length > local_thr_arr->real_size) {
+        length = local_thr_arr->real_size - first;
+    }
+    if (local_thr_arr->real_size-(first+length)<length) {
+        length = local_thr_arr->real_size-first;
+    }
+    qsort(&local_arr[first], length, sizeof(int), cmp);
+    local_thr_arr->length = length;
+    return NULL;
+}
 int main(int argc, char *argv[]) {
 
     if (argc != 2) {
