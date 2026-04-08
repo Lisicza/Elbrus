@@ -1,4 +1,4 @@
-FLAGS ?= -O2
+FLAGS ?= -O2 -pthread
 ifeq ($(origin CC), default)
 	CC = gcc
 endif

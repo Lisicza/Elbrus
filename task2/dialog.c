@@ -24,7 +24,7 @@ void *read_f(void *arg) {
                 printf(" > ");
                 printf("%s\n", msg);
             } else {
-                write(fd, buf, BUFSIZE-1);
+                write(fd, buf, n);
             }
         }
     }
