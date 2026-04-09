@@ -1,0 +1,10 @@
+FLAGS ?= -O2
+ifeq ($(origin CC), default)
+	CC = gcc
+endif
+
+5: 5.c
+	$(CC) $(FLAGS) $^ -o $@
+	
+clean:
+	rm -f 5
